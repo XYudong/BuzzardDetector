@@ -51,22 +51,36 @@ def recognize_fea_vec(img_vector, fea_type):
     return output
 
 
-def main():
-    im = cv2.imread('data/test/positive/1/im_video_0_6.jpg', 0)
-    if im is None:
-        print('fail to open the image\n')
-        return
-    fea_type = 'ORB'
+def main(fromVideo=True, fea_type='SURF'):
+    if fromVideo:
+        cap = cv2.VideoCapture(0)
+        while True:
+            t1 = time.time()
 
-    t1 = time.time()
+            grabbed, frame = cap.read()
+            if not grabbed:
+                print('fail to open the video\n')
+                break
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    vec = extract_fea_vec(im, fea_type)
-    res = recognize_fea_vec(vec, fea_type)
+            vec = extract_fea_vec(frame, fea_type)
+            res = recognize_fea_vec(vec, fea_type)
 
-    t2 = time.time()
-    print('result is ' + str(res))
-    print('This takes: ' + str(t2-t1) + ' seconds\n')
+            t2 = time.time()
 
+            cv2.putText(frame, "res: " + str(res), (10, 30),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+
+            print('This takes: ' + str(t2-t1) + ' seconds\n')
+
+            cv2.imshow("Frame", frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+    else:
+        im = cv2.imread('data/test/negative/1/im_video_1_20.jpg', 0)
+        vec = extract_fea_vec(im, fea_type)
+        res = recognize_fea_vec(vec, fea_type)
+        print('result is ' + str(res))
     return
 
 
