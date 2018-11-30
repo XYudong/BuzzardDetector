@@ -1,0 +1,13 @@
+# compiled source
+*.o
+*.so
+
+# data
+*.pcd
+*.bag
+*.sav
+*.txt
+*.jpg
+
+# directory
+data/
