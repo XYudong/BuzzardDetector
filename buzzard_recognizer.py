@@ -13,10 +13,10 @@ def extract_fea_vec(img_in, fea_type):
         return
 
     if fea_type == "ORB":
-        voc_name = "myVoc_" + fea_type + "_0.txt"
+        voc_name = "myVoc_" + fea_type + "_01.txt"
         k = 30
     elif fea_type == "SIFT" or fea_type == "SURF":
-        voc_name = "myVoc_" + fea_type + "_0.txt"
+        voc_name = "myVoc_" + fea_type + "_01.txt"
         k = 50
     else:
         print("invalid feature type\n")
@@ -42,8 +42,8 @@ def recognize_fea_vec(img_vector, fea_type):
     if fea_type not in type_list:
         print('invalid feature type\n')
         return
-    model_path = 'pre-trained models/'
-    filename = model_path + fea_type + '_model.sav'
+    model_path = 'pre-trained_models/'
+    filename = model_path + fea_type + '_model01.sav'
     clf = pickle.load(open(filename, 'rb'), encoding='latin1')
 
     output = clf.predict(img_vector)
@@ -51,7 +51,7 @@ def recognize_fea_vec(img_vector, fea_type):
     return output
 
 
-def main(fromVideo=True, fea_type='SURF'):
+def main(fromVideo=True, fea_type='SIFT'):
     if fromVideo:
         cap = cv2.VideoCapture(0)
         while True:
@@ -77,11 +77,11 @@ def main(fromVideo=True, fea_type='SURF'):
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     else:
-        im = cv2.imread('data/test/negative/1/im_video_1_20.jpg', 0)
+        im = cv2.imread('data/test/negative/1/im_video_3_9.jpg', 0)
         vec = extract_fea_vec(im, fea_type)
         res = recognize_fea_vec(vec, fea_type)
         print('result is ' + str(res))
     return
 
 
-main()
+main(True, 'SURF')

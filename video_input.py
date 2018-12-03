@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 
 """extract and images from a video"""
-
-path_to_video = "data/video/video_7.mp4"
-path_to_image = "data/video/image/"
+video_idx = 9
+path_to_video = "data/video/new/video2_" + str(video_idx) + ".mp4"
+path_to_image = "data/video/image2/"
 
 cap = cv2.VideoCapture(path_to_video)
 
@@ -22,15 +22,17 @@ while True:
     # print(gray.shape)
 
     # pick some frames and save them to image files
-    if i % 10 == 1:
-        cv2.imwrite(path_to_image + "im_video_7_" + str(int(i/11)) + ".jpg", gray)
+    num = 10
+    remainder = 1
+    if i % num == remainder:
+        cv2.imwrite(path_to_image + "im_video2_" + str(video_idx) + "_" + str(int(i/(num+remainder))) + ".jpg", gray)
 
     i += 1
 
     # Display the resulting frame
-    cv2.imshow('frame', gray)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    # cv2.imshow('frame', gray)
+    # if cv2.waitKey(1) & 0xFF == ord('q'):
+    #     break
 
 print(i)
 

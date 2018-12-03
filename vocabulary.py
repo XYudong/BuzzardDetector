@@ -13,25 +13,40 @@ def build_voc(desIn, n_clu):
     return voc_out
 
 
-fea_type = "SURF"
+def collect_descriptors(pos_path, neg_path):
+    # get a list of descriptors
+    pos = get_all_des(fea_type, pos_path)   # np array of whitened descriptors
+    neg = get_all_des(fea_type, neg_path)
+    out = np.vstack((pos, neg))
+    return out
+
+
+fea_type = "SIFT"
 dataset = "train"
-k = 50
+
+if fea_type == 'ORB':
+    k = 30
+else:
+    k = 50
 
 # get a list of descriptors
 positive_path = "data/" + dataset + "/positive/0/"
-descriptors_wh_tr_pos = get_all_des(fea_type, positive_path)   # np array of whitened descriptors
 negative_path = "data/" + dataset + "/negative/0/"
-descriptors_wh_tr_neg = get_all_des(fea_type, negative_path)
+descriptors_0 = collect_descriptors(positive_path, negative_path)   # np array of whitened descriptors
 
-descriptors_wh_tr = np.vstack((descriptors_wh_tr_pos, descriptors_wh_tr_neg))
+positive_path = "data/" + dataset + "/positive/1/"
+negative_path = "data/" + dataset + "/negative/1/"
+descriptors_1 = collect_descriptors(positive_path, negative_path)
 
-print(descriptors_wh_tr.shape)
-print('using ' + str(len(descriptors_wh_tr)) + ' descriptors as our corpus.\n')
+descriptors_tr = np.vstack((descriptors_0, descriptors_1))
+
+print(descriptors_tr.shape)
+print('using ' + str(len(descriptors_tr)) + ' descriptors as our corpus.\n')
 
 # build vocabulary
 print('building the vocabulary\n')
 
-voc = build_voc(descriptors_wh_tr, k)
+voc = build_voc(descriptors_tr, k)
 print('shape of vocabulary: ' + str(voc.shape) + '\n')
 
-np.savetxt('./voc_output/myVoc_' + fea_type + '_0.txt', voc)
+np.savetxt('./voc_output/myVoc_' + fea_type + '_01.txt', voc)

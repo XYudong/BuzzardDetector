@@ -71,8 +71,8 @@ import pickle
 # else:
 #     print('in it')
 
-
-
+a = [1] * 3
+print(a)
 
 
 

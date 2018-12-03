@@ -8,6 +8,7 @@
 *.sav
 *.txt
 *.jpg
+*.mp4
 
 # directory
 data/

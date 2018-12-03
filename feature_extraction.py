@@ -24,16 +24,15 @@ def extract_fea_vec(dataset, fea_type):
     voc_path = "voc_output/"
 
     if fea_type == "ORB":
-        voc_name = "myVoc_" + fea_type + "_0.txt"
         k = 30
     elif fea_type == "SIFT" or fea_type == "SURF":
-        voc_name = "myVoc_" + fea_type + "_0.txt"
         k = 50
     else:
         print("invalid fea_type\n")
         return
 
     # load pre-built visual word vocabulary
+    voc_name = "myVoc_" + fea_type + "_01.txt"
     voc = np.loadtxt(voc_path + voc_name)
 
     # calculate a histogram feature vector for each input image from path provided
@@ -44,8 +43,8 @@ def extract_fea_vec(dataset, fea_type):
     print('shape positive samples: ' + str(img_hist_vecs_pos.shape) + '\n')
     print('shape negative samples: ' + str(img_hist_vecs_neg.shape) + '\n')
 
-    np.savetxt(dataset + "_" + fea_type + "_positive_1.txt", img_hist_vecs_pos)
-    np.savetxt(dataset + "_" + fea_type + "_negative_1.txt", img_hist_vecs_neg)
+    np.savetxt("output/" + dataset + "_" + fea_type + "_positive01_0.txt", img_hist_vecs_pos)
+    np.savetxt("output/" + dataset + "_" + fea_type + "_negative01_0.txt", img_hist_vecs_neg)
 
     return
 
@@ -58,11 +57,11 @@ def extract_fea_vec(dataset, fea_type):
 
 # setting
 dataset = "test"
-fea_type = "SURF"
+fea_type = "SIFT"
 
 # input images path
-positive_path = "data/" + dataset + "/positive/1/"
-negative_path = "data/" + dataset + "/negative/1/"
+positive_path = "data/" + dataset + "/positive/0/"
+negative_path = "data/" + dataset + "/negative/0/"
 
 extract_fea_vec(dataset, fea_type)
 
