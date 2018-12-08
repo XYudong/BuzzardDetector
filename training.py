@@ -17,7 +17,7 @@ def load(filename):
     return data
 
 
-method = 2
+method = 1
 if method == 1:
     feature = 'SIFT'
 elif method == 2:

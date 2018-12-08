@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import pickle
 import time
+from matplotlib import pyplot as plt
+import matplotlib.patches as patches
 
 from descriptors_extraction import img_quantizer
 
@@ -29,12 +31,12 @@ def extract_fea_vec(img_in, fea_type):
 
     # calculate a histogram feature vector for the input image
     # print('processing new image(s)\n')
-    img_hist_vec = img_quantizer(img_in, fea_type, voc, k)
+    kp, des, img_hist_vec = img_quantizer(img_in, fea_type, voc, k)
     img_hist_vec = img_hist_vec.reshape(1, -1)
 
     print('shape: ' + str(img_hist_vec.shape) + '\n')
 
-    return img_hist_vec
+    return kp, des, img_hist_vec
 
 
 def recognize_fea_vec(img_vector, fea_type):
@@ -51,6 +53,75 @@ def recognize_fea_vec(img_vector, fea_type):
     return output
 
 
+def match_fea(in_kp, in_des, fea_type):
+    """
+    :param in_kp: key points
+    :param in_des:  descriptors from train image
+    :param fea_type:
+    :return:
+    """
+    temp_dir = 'output/templates/'      # templates directory
+    with open(temp_dir + fea_type + '_template_0.pickle', 'rb') as f:
+        template_des = pickle.load(f)       # descriptors from query images
+
+    FLANN_INDEX_KDTREE = 0
+    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
+    search_params = dict(checks=50)
+
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
+
+    matches = flann.knnMatch(template_des, in_des, k=2)
+
+    # store all the good matches as per Lowe's ratio test.
+    good = []
+    for m, n in matches:
+        if m.distance < 0.7 * n.distance:
+            good.append(m)
+
+    out_kp = [in_kp[mm.trainIdx] for mm in good]
+
+    return out_kp
+
+
+def filter_kps(in_kps):
+    num = len(in_kps)
+    xs = np.zeros(num)
+    ys = np.zeros(num)
+    for i, kp in enumerate(in_kps):
+        pt = kp.pt
+        xs[i] = pt[0]
+        ys[i] = pt[1]
+
+    x_std = np.std(xs)
+    y_std = np.std(ys)
+    x_mean = np.mean(xs)
+    y_mean = np.mean(ys)
+    out_x = []
+    out_y = []
+    for i, (x, y) in enumerate(zip(xs, ys)):
+        if abs(x - x_mean) < 1.3*x_std and abs(y - y_mean) < 1.3*y_std:
+            out_x.append(x)
+            out_y.append(y)
+    return out_x, out_y
+
+
+def get_bbox(xs, ys):
+    x_mean = np.mean(xs)
+    y_mean = np.mean(ys)
+    x_diff = np.max(xs) - x_mean
+    y_diff = np.max(ys) - y_mean
+
+    bbox = []
+    width = np.max(xs) - np.min(xs)
+    height = np.max(ys) - np.min(ys)
+    left_bottom = (x_mean - 0.7*width, y_mean - 0.7*height)
+    bbox.append(left_bottom)
+    bbox.append(1.2*width)
+    bbox.append(1.2*height)
+
+    return bbox
+
+
 def main(fromVideo=True, fea_type='SIFT'):
     if fromVideo:
         cap = cv2.VideoCapture(0)
@@ -61,9 +132,9 @@ def main(fromVideo=True, fea_type='SIFT'):
             if not grabbed:
                 print('fail to open the video\n')
                 break
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-            vec = extract_fea_vec(frame, fea_type)
+            kp, des, vec = extract_fea_vec(frame_gray, fea_type)
             res = recognize_fea_vec(vec, fea_type)
 
             t2 = time.time()
@@ -77,11 +148,38 @@ def main(fromVideo=True, fea_type='SIFT'):
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     else:
-        im = cv2.imread('data/test/negative/1/im_video_3_9.jpg', 0)
-        vec = extract_fea_vec(im, fea_type)
+        im = cv2.imread('data/train/positive/1/im_video2_4_53.jpg', 0)
+        # im = cv2.imread('data/train/positive/1/im_video_7_2.jpg', 0)
+        if any(np.array(im.shape) > 1000):
+            im = cv2.resize(im, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
+
+        kp, des, vec = extract_fea_vec(im, fea_type)
         res = recognize_fea_vec(vec, fea_type)
         print('result is ' + str(res))
+
+        if res == 1:
+            kps = match_fea(kp, des, fea_type)
+            xs, ys = filter_kps(kps)
+            print('\nfind ' + str(len(xs)) + ' matches\n')
+
+            bbox = get_bbox(xs, ys)
+            rect = patches.Rectangle(*bbox, fill=False)
+
+            fig = plt.figure()
+            ax = fig.add_axes([0, 0, 1, 1])
+
+            im = cv2.drawKeypoints(im, kps, im, color=(0, 255, 0))
+
+            plt.imshow(im, 'gray')
+            plt.scatter(xs, ys, s=15, c='r', marker='.')
+
+            ax.add_patch(rect)
+            ax.set_axis_off()
+
+            plt.show()
+
     return
 
 
-main(True, 'SURF')
+main(fromVideo=False, fea_type='SURF')
+

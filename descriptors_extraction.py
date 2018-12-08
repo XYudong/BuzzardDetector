@@ -10,10 +10,10 @@ def get_des(typeIn, imgIn):
     """find key points, return descriptors according to @type and a descriptor image"""
     t1 = time.time()
     if typeIn == "SIFT":
-        sift = cv2.xfeatures2d.SIFT_create(contrastThreshold=0.06)
+        sift = cv2.xfeatures2d.SIFT_create(contrastThreshold=0.07)
         kp, des = sift.detectAndCompute(imgIn, None)
     elif typeIn == "ORB":
-        orb = cv2.ORB_create(nfeatures=600, scaleFactor=1.2)
+        orb = cv2.ORB_create(nfeatures=300, scaleFactor=1.2)
         kp, des = orb.detectAndCompute(imgIn, None)
     elif typeIn == "SURF":
         surf = cv2.xfeatures2d.SURF_create(hessianThreshold=900, extended=True)
@@ -24,8 +24,8 @@ def get_des(typeIn, imgIn):
 
     t2 = time.time()
     print(typeIn + " time: " + str(t2 - t1))
-    img_fea = cv2.drawKeypoints(imgIn, kp, imgIn, color=(0, 255, 0))
-    return img_fea, des
+    # img_fea = cv2.drawKeypoints(imgIn, kp, imgIn, color=(0, 255, 0))
+    return kp, des
 
 
 def preprocess_img(img_path):
@@ -35,7 +35,7 @@ def preprocess_img(img_path):
         img_in = img_path       # means the input is already the image needed
 
     if any(np.array(img_in.shape) > 1000):
-        img_in = cv2.resize(img_in, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_CUBIC)
+        img_in = cv2.resize(img_in, None, fx=0.3, fy=0.3, interpolation=cv2.INTER_CUBIC)
     img_in = cv2.GaussianBlur(img_in, (3, 3), sigmaX=0)
     return img_in
 
@@ -46,7 +46,7 @@ def get_all_des(typeIn, path):
     descriptors = np.array([])
     for name in names:
         img_tr = preprocess_img(path + name)
-        img_des, des = get_des(typeIn, img_tr)
+        kp, des = get_des(typeIn, img_tr)
         if descriptors.size == 0:
             descriptors = des
         else:
@@ -60,10 +60,10 @@ def get_all_des(typeIn, path):
     return descriptors_new
 
 
-def quantize_des(des, vocIn, n_clu):
+def quantize_des(des_whiten, vocIn, n_clu):
     """quantize all whitened descriptors of an image"""
     img_hist = np.zeros((1, n_clu))[0]
-    words, dist = vq(des, vocIn)
+    words, dist = vq(des_whiten, vocIn)
     for w in words:
         img_hist[w] += 1
 
@@ -75,14 +75,13 @@ def quantize_des(des, vocIn, n_clu):
 
 def imgs_quantization(in_path, in_type, in_voc, n_clus):
     """
-    Main workflow here
-    quantize each image in the path as a vector and stack them vertically
+    quantize every image in the path into a vector and stack them vertically
     """
     names = os.listdir(in_path)
     img_hists = np.array([])
     for name in names:
         img_new = preprocess_img(in_path + name)
-        img_annotated, des = get_des(in_type, img_new)
+        kp, des = get_des(in_type, img_new)
         des_wh = whiten(des)
         img_hist_vec = quantize_des(des_wh, in_voc, n_clus)
         if img_hists.size == 0:
@@ -93,9 +92,13 @@ def imgs_quantization(in_path, in_type, in_voc, n_clus):
 
 
 def img_quantizer(img, fea_type, voc, n_clus):
+    """
+    Main workflow here
+    quantize the input image frame as a vector
+    """
     img_new = preprocess_img(img)
-    img_annotated, des = get_des(fea_type, img_new)
+    kp, des = get_des(fea_type, img_new)
     des_wh = whiten(des)
     img_hist_vec = quantize_des(des_wh, voc, n_clus)
 
-    return img_hist_vec
+    return kp, des, img_hist_vec

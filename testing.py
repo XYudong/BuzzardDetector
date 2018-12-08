@@ -7,13 +7,11 @@ def load(filename):
     data = []
     for line in f.readlines():
         data.append(list(map(float, line.split(' '))))
-
-    print(str(len(data)) + ' * ' + str(len(data[0])))
     f.close()
     return data
 
 
-method = 3
+method = 2
 if method == 1:
     feature = 'SIFT'
 elif method == 2:
@@ -30,8 +28,12 @@ dir_0 = 'output/'
 dir_1 = 'output/'
 pos_data = load(dir_0 + '/test_' + feature + '_positive01_0.txt')
 pos_data.extend(load(dir_1 + '/test_' + feature + '_positive01_1.txt'))
+print('Positive data: ' + str(len(pos_data)) + ' * ' + str(len(pos_data[0])))
+
 neg_data = load(dir_0 + '/test_' + feature + '_negative01_0.txt')
 neg_data.extend(load(dir_1 + '/test_' + feature + '_negative01_1.txt'))
+print('Negative data: ' + str(len(neg_data)) + ' * ' + str(len(neg_data[0])))
+
 data_test = pos_data + neg_data
 label_test = [1]*len(pos_data) + [0]*len(neg_data)
 output_test = []
