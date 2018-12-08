@@ -106,20 +106,34 @@ def filter_kps(in_kps):
 
 
 def get_bbox(xs, ys):
-    x_mean = np.mean(xs)
-    y_mean = np.mean(ys)
-    x_diff = np.max(xs) - x_mean
-    y_diff = np.max(ys) - y_mean
+    x_mean = np.median(xs)
+    y_mean = np.median(ys)
 
     bbox = []
     width = np.max(xs) - np.min(xs)
     height = np.max(ys) - np.min(ys)
-    left_bottom = (x_mean - 0.7*width, y_mean - 0.7*height)
-    bbox.append(left_bottom)
-    bbox.append(1.2*width)
-    bbox.append(1.2*height)
+    # left_top: the corner with the lowest values in both x, y coordinates
+    left_top = (int(x_mean - 0.7*width), int(y_mean - 0.7*height))
+    right_bottom = (int(x_mean + 0.7*width), int(y_mean + 0.7*height))
+    bbox.append(left_top)
+    bbox.append(right_bottom)
 
     return bbox
+
+
+def draw_bbox(im, kps):
+    xs, ys = filter_kps(kps)
+    print('\nfind ' + str(len(xs)) + ' matches\n')
+
+    bbox = get_bbox(xs, ys)
+
+    im = cv2.drawKeypoints(im, kps, im, color=(225, 255, 0))  # matched key points
+    for x, y in zip(xs, ys):  # filtered key points
+        cv2.circle(im, (int(x), int(y)), radius=3, color=(0, 0, 255), thickness=2)
+
+    cv2.rectangle(im, *bbox, (0, 225, 100), thickness=3)  # draw bounding box
+
+    return im
 
 
 def main(fromVideo=True, fea_type='SIFT'):
@@ -137,49 +151,42 @@ def main(fromVideo=True, fea_type='SIFT'):
             kp, des, vec = extract_fea_vec(frame_gray, fea_type)
             res = recognize_fea_vec(vec, fea_type)
 
-            t2 = time.time()
-
             cv2.putText(frame, "res: " + str(res), (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+            if res == 1:
+                kps = match_fea(kp, des, fea_type)
+                frame = draw_bbox(frame, kps)
 
-            print('This takes: ' + str(t2-t1) + ' seconds\n')
-
-            cv2.imshow("Frame", frame)
+            cv2.imshow('Frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+
+            t2 = time.time()
+            print('This takes: ' + str(t2-t1) + ' seconds\n')
+
     else:
-        im = cv2.imread('data/train/positive/1/im_video2_4_53.jpg', 0)
-        # im = cv2.imread('data/train/positive/1/im_video_7_2.jpg', 0)
+        im = cv2.imread('data/train/positive/1/im_video_4_22.jpg', 0)
+        # im = cv2.imread('data/train/positive/0/pos_12.jpg', 0)
         if any(np.array(im.shape) > 1000):
             im = cv2.resize(im, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
 
         kp, des, vec = extract_fea_vec(im, fea_type)
         res = recognize_fea_vec(vec, fea_type)
-        print('result is ' + str(res))
+        # print('result is ' + str(res))
 
+        cv2.putText(im, "res: " + str(res), (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
         if res == 1:
             kps = match_fea(kp, des, fea_type)
-            xs, ys = filter_kps(kps)
-            print('\nfind ' + str(len(xs)) + ' matches\n')
+            im = draw_bbox(im, kps)
 
-            bbox = get_bbox(xs, ys)
-            rect = patches.Rectangle(*bbox, fill=False)
-
-            fig = plt.figure()
-            ax = fig.add_axes([0, 0, 1, 1])
-
-            im = cv2.drawKeypoints(im, kps, im, color=(0, 255, 0))
-
-            plt.imshow(im, 'gray')
-            plt.scatter(xs, ys, s=15, c='r', marker='.')
-
-            ax.add_patch(rect)
-            ax.set_axis_off()
-
-            plt.show()
+        while True:
+            cv2.imshow('Frame', im)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
     return
 
 
-main(fromVideo=False, fea_type='SURF')
+main(fromVideo=True, fea_type='SIFT')
 

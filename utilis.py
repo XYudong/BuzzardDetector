@@ -37,8 +37,8 @@ def extract_template(temp_dir, fea_type):
             kps.extend(kp)
             descriptors = np.vstack((descriptors, des))
 
-    with open(temp_dir + fea_type + '_template_0.pickle', 'wb') as ff:
-        pickle.dump(descriptors, ff)
+    # with open(temp_dir + fea_type + '_template_0.pickle', 'wb') as ff:
+    #     pickle.dump(descriptors, ff)
 
     # with open(temp_dir + fea_type + '_template_0.pickle', 'rb') as f:
     #     template = pickle.load(f)

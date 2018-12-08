@@ -36,6 +36,7 @@ def preprocess_img(img_path):
 
     if any(np.array(img_in.shape) > 1000):
         img_in = cv2.resize(img_in, None, fx=0.3, fy=0.3, interpolation=cv2.INTER_CUBIC)
+    print("image shape: " + str(img_in.shape))
     img_in = cv2.GaussianBlur(img_in, (3, 3), sigmaX=0)
     return img_in
 

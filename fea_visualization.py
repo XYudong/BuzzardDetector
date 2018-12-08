@@ -19,8 +19,9 @@ def compress_img():
     return
 
 
-img = cv2.imread('data/train/positive/1/im_video2_4_41.jpg', 0)     # test example
-img = cv2.resize(img, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_CUBIC)
+img = cv2.imread('output/templates/imgs/pos_31.jpg', 0)     # test example
+img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
+
 print('img shape: ' + str(img.shape))
 
 # SIFT
