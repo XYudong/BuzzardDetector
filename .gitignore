@@ -10,5 +10,8 @@
 *.jpg
 *.mp4
 
+*.pickle
+
 # directory
 data/
+.idea/

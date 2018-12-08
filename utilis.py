@@ -4,7 +4,20 @@ import cv2
 import numpy as np
 import os
 import pickle
-from copy import deepcopy
+
+
+def compress_img():
+    """compress all images in the path"""
+    in_path = 'output/templates/rgb/'
+    out_path = 'output/templates/imgs/'
+    names = os.listdir(in_path)
+    for i, name in enumerate(names):
+        img = cv2.imread(in_path + name, 0)
+        if any(np.array(img.shape) > 1000):
+            img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
+        cv2.imwrite(out_path + name, img)
+
+    return
 
 
 def aug_imgs(in_path, out_path):
@@ -29,6 +42,9 @@ def extract_template(temp_dir, fea_type):
     names = os.listdir(in_path)
     for i, name in enumerate(names):
         img = cv2.imread(in_path + name, 0)
+        if any(np.array(img.shape) > 1000):
+            img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
+        print(img.shape)
         kp, des = get_des(fea_type, img)
         if descriptors.size == 0:
             kps = kp
@@ -37,8 +53,9 @@ def extract_template(temp_dir, fea_type):
             kps.extend(kp)
             descriptors = np.vstack((descriptors, des))
 
-    # with open(temp_dir + fea_type + '_template_0.pickle', 'wb') as ff:
-    #     pickle.dump(descriptors, ff)
+    print("template descriptors shape: " + str(descriptors.shape))
+    with open(temp_dir + fea_type + '_template_0.pickle', 'wb') as ff:
+        pickle.dump(descriptors, ff)
 
     # with open(temp_dir + fea_type + '_template_0.pickle', 'rb') as f:
     #     template = pickle.load(f)
@@ -51,9 +68,13 @@ def extract_template(temp_dir, fea_type):
 # aug_imgs(path_to_img, output_path)
 
 
+#  compress images
+# compress_img()
+
+
 # extract features from template images
 temp_dir = 'output/templates/'      # templates directory
-extract_template(temp_dir, 'ORB')
+extract_template(temp_dir, 'SIFT')
 
 
 

@@ -6,27 +6,15 @@ import time
 import os
 
 
-def compress_img():
-    """compress all images in the path"""
-    in_path = 'data/train/positive/00/'
-    out_path = 'data/train/positive/0/'
-    names = os.listdir(in_path)
-    for i, name in enumerate(names):
-        img = cv2.imread(in_path + name, 0)
-        img = cv2.resize(img, None, fx=0.25, fy=0.25, interpolation=cv2.INTER_CUBIC)
-        cv2.imwrite(out_path + name, img)
-
-    return
-
-
-img = cv2.imread('output/templates/imgs/pos_31.jpg', 0)     # test example
-img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
-
+img = cv2.imread('output/templates/imgs/pos_002.jpg', 0)     # test example
+if any(np.array(img.shape) > 1000):
+    img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
+img = cv2.GaussianBlur(img, (3, 3), sigmaX=0)
 print('img shape: ' + str(img.shape))
 
 # SIFT
 t1 = time.time()
-sift = cv2.xfeatures2d.SIFT_create(contrastThreshold=0.075)
+sift = cv2.xfeatures2d.SIFT_create(contrastThreshold=0.07)
 kp, des = sift.detectAndCompute(img, None)
 
 t2 = time.time()
@@ -56,7 +44,7 @@ print(des_orb.shape)
 
 # SURF
 t1 = time.time()
-surf = cv2.xfeatures2d.SURF_create(hessianThreshold=950, extended=True)
+surf = cv2.xfeatures2d.SURF_create(hessianThreshold=900, extended=True)
 kp_surf, des_surf = surf.detectAndCompute(img, None)
 
 t2 = time.time()

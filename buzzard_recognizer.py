@@ -165,8 +165,8 @@ def main(fromVideo=True, fea_type='SIFT'):
             print('This takes: ' + str(t2-t1) + ' seconds\n')
 
     else:
-        im = cv2.imread('data/train/positive/1/im_video_4_22.jpg', 0)
-        # im = cv2.imread('data/train/positive/0/pos_12.jpg', 0)
+        # im = cv2.imread('data/train/positive/1/im_video_4_22.jpg', 0)
+        im = cv2.imread('data/train/positive/0/pos_35.jpg', 0)
         if any(np.array(im.shape) > 1000):
             im = cv2.resize(im, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
 
@@ -179,6 +179,7 @@ def main(fromVideo=True, fea_type='SIFT'):
         if res == 1:
             kps = match_fea(kp, des, fea_type)
             im = draw_bbox(im, kps)
+            # im = cv2.drawKeypoints(im, kp, im, color=(0, 255, 0))
 
         while True:
             cv2.imshow('Frame', im)
@@ -188,5 +189,5 @@ def main(fromVideo=True, fea_type='SIFT'):
     return
 
 
-main(fromVideo=True, fea_type='SIFT')
+main(fromVideo=True, fea_type='SURF')
 
