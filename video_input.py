@@ -18,14 +18,22 @@ while True:
         break
 
     # Our operations on the frame come here
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    height, width, channels = hsv.shape
+    hue = np.zeros((height, width), np.uint8)
+    for i in range(height):  # those are set elsewhere
+        for j in range(width):  # those are set elsewhere
+            hue[i][j] = hsv[i][j][0]
+
     # print(gray.shape)
 
     # pick some frames and save them to image files
     num = 10
     remainder = 1
     if i % num == remainder:
-        cv2.imwrite(path_to_image + "im_video2_" + str(video_idx) + "_" + str(int(i/(num+remainder))) + ".jpg", gray)
+        cv2.imwrite(path_to_image + "im_video2_" + str(video_idx) + "_" + str(int(i/(num+remainder))) + ".jpg", hue)
 
     i += 1
 
