@@ -12,6 +12,9 @@
 
 *.pickle
 
+# py files
+just*.py
+
 # directory
 data/
 .idea/

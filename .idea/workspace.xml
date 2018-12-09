@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7588d3f-0e63-4c6c-b718-8a47d3ea0ce5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buzzard_recognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/buzzard_recognizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/justTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/justTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilis.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +25,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="gitignore" value="1" />
           <entry key="jpg" value="6" />
           <entry key="md" value="2" />
           <entry key="py" value="62" />
@@ -38,22 +36,23 @@
         <counts>
           <entry key="Image" value="6" />
           <entry key="Markdown" value="2" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Python" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="21" />
+          <entry key="gitignore" value="23" />
           <entry key="md" value="299" />
           <entry key="py" value="18096" />
-          <entry key="txt" value="222" />
+          <entry key="txt" value="342" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="299" />
-          <entry key="PLAIN_TEXT" value="243" />
+          <entry key="PLAIN_TEXT" value="386" />
           <entry key="Python" value="18096" />
         </counts>
       </usages-collector>
@@ -101,7 +100,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/buzzard_recognizer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
@@ -112,6 +111,15 @@
                 <marker date="1544329355466" expanded="true" signature="3905:4357" ph="..." />
                 <marker date="1544329355466" expanded="true" signature="4354:4357" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -202,6 +210,7 @@
         <option value="$PROJECT_DIR$/justTest.py" />
         <option value="$PROJECT_DIR$/utilis.py" />
         <option value="$PROJECT_DIR$/buzzard_recognizer.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -223,24 +232,6 @@
             <path>
               <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
               <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
-              <item name="positive" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -447,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544310424237</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="apply mean filter upon bounding box locations, quite useful">
+      <created>1544329560221</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544329560221</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -463,12 +461,12 @@
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14792576" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14792576" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49945414" weight="0.42991632" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -518,7 +516,8 @@
     <MESSAGE value="feature based matching and bbox drawing, need further parameters tuning" />
     <MESSAGE value="update bbox" />
     <MESSAGE value="a usable version" />
-    <option name="LAST_COMMIT_MESSAGE" value="a usable version" />
+    <MESSAGE value="apply mean filter upon bounding box locations, quite useful" />
+    <option name="LAST_COMMIT_MESSAGE" value="apply mean filter upon bounding box locations, quite useful" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -837,6 +836,13 @@
             <marker date="1544329355466" expanded="true" signature="3905:4357" ph="..." />
             <marker date="1544329355466" expanded="true" signature="4354:4357" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
         </state>
       </provider>
     </entry>
