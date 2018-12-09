@@ -1,15 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import statistics
 
-# plt.axis([0, 10, 0, 1])
-#
-# for i in range(10):
-#     y = np.random.random()
-#     plt.scatter(i, y)
-#     plt.pause(0.05)
-#
-# plt.show()
+a = [(1,3), (2,3)]
 
-a = int(2.3)
+b = np.mean(a, 0)
 
-print(a)
+c = (1, 2)
+c_list = list(c)
+
+print(c_list)
+
+# print(tuple(int(x) for x in b))

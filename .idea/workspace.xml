@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7588d3f-0e63-4c6c-b718-8a47d3ea0ce5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/justTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/templates/ORB_template_0.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/templates/SIFT_template_0.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/templates/SURF_template_0.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buzzard_recognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/buzzard_recognizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/descriptors_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/descriptors_extraction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fea_visualization.py" beforeDir="false" afterPath="$PROJECT_DIR$/fea_visualization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/justTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/justTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilis.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +30,7 @@
         <counts>
           <entry key="jpg" value="6" />
           <entry key="md" value="2" />
-          <entry key="py" value="59" />
+          <entry key="py" value="62" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
@@ -45,22 +39,22 @@
           <entry key="Image" value="6" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="59" />
+          <entry key="Python" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="21" />
           <entry key="md" value="299" />
-          <entry key="py" value="16158" />
-          <entry key="txt" value="205" />
+          <entry key="py" value="18096" />
+          <entry key="txt" value="222" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="299" />
-          <entry key="PLAIN_TEXT" value="226" />
-          <entry key="Python" value="16158" />
+          <entry key="PLAIN_TEXT" value="243" />
+          <entry key="Python" value="18096" />
         </counts>
       </usages-collector>
     </session>
@@ -70,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feature_extraction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-169">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="216">
+              <caret line="27" column="66" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="66" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
               </folding>
@@ -82,11 +76,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+            <state relative-caret-position="456">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
-                <marker date="1544309046979" expanded="true" signature="1328:2119" ph="..." />
+                <marker date="1544328841160" expanded="true" signature="221:1648" ph="..." />
+                <marker date="1544328841160" expanded="true" signature="392:442" ph="..." />
+                <marker date="1544328841160" expanded="true" signature="2840:3631" ph="..." />
               </folding>
             </state>
           </provider>
@@ -95,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/descriptors_extraction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+            <state relative-caret-position="102">
+              <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1544305042542" expanded="true" signature="3013:3018" ph="..." />
@@ -108,12 +104,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/buzzard_recognizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
+            <state relative-caret-position="304">
+              <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1544309478596" expanded="true" signature="3354:3779" ph="..." />
-                <marker date="1544309478596" expanded="true" signature="3776:3779" ph="..." />
+                <marker date="1544329355466" expanded="true" signature="3536:3882" ph="..." />
+                <marker date="1544329355466" expanded="true" signature="3905:4357" ph="..." />
+                <marker date="1544329355466" expanded="true" signature="4354:4357" ph="..." />
               </folding>
             </state>
           </provider>
@@ -147,8 +144,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/justTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            <state relative-caret-position="266">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,7 +166,14 @@
     <findStrings>
       <find>gaussian</find>
       <find>lis</find>
+      <find>topL</find>
+      <find>bottomR</find>
+      <find>shape</find>
     </findStrings>
+    <replaceStrings>
+      <replace>LeftTop</replace>
+      <replace>RightBot</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -190,9 +197,9 @@
         <option value="$PROJECT_DIR$/123.py" />
         <option value="$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-1262018858/cv2/cv2/FlannBasedMatcher.py" />
         <option value="$PROJECT_DIR$/testing.py" />
-        <option value="$PROJECT_DIR$/justTest.py" />
         <option value="$PROJECT_DIR$/descriptors_extraction.py" />
         <option value="$PROJECT_DIR$/fea_visualization.py" />
+        <option value="$PROJECT_DIR$/justTest.py" />
         <option value="$PROJECT_DIR$/utilis.py" />
         <option value="$PROJECT_DIR$/buzzard_recognizer.py" />
       </list>
@@ -234,24 +241,6 @@
               <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="train" type="462c0819:PsiDirectoryNode" />
               <item name="positive" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="imgs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -398,9 +387,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.buzzard_recognizer" />
+        <item itemvalue="Python.justTest" />
         <item itemvalue="Python.utilis" />
         <item itemvalue="Python.fea_visualization" />
-        <item itemvalue="Python.justTest" />
         <item itemvalue="Python.testing" />
       </list>
     </recent_temporary>
@@ -451,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544303533516</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="a usable version">
+      <created>1544310424237</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1544310424237</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -472,7 +468,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3075314" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49945414" weight="0.42991632" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -521,7 +517,8 @@
     <MESSAGE value="add training and testing code from zhyma" />
     <MESSAGE value="feature based matching and bbox drawing, need further parameters tuning" />
     <MESSAGE value="update bbox" />
-    <option name="LAST_COMMIT_MESSAGE" value="update bbox" />
+    <MESSAGE value="a usable version" />
+    <option name="LAST_COMMIT_MESSAGE" value="a usable version" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -614,13 +611,6 @@
     <entry file="file://$PROJECT_DIR$/data/test/positive/1/im_video_0_6.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/video_input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pic_rename.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -674,16 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature_extraction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-169">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -772,13 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/justTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/templates/imgs/pos_002.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -796,10 +769,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/video_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/deepcv/lib/python3.5/site-packages/numpy/core/fromnumeric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="2795" column="26" selection-start-line="2795" selection-start-column="26" selection-end-line="2795" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/justTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <marker date="1544328841160" expanded="true" signature="221:1648" ph="..." />
+            <marker date="1544328841160" expanded="true" signature="392:442" ph="..." />
+            <marker date="1544328841160" expanded="true" signature="2840:3631" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/descriptors_extraction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+        <state relative-caret-position="102">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <marker date="1544305042542" expanded="true" signature="3013:3018" ph="..." />
@@ -807,25 +817,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilis.py">
+    <entry file="file://$PROJECT_DIR$/feature_extraction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+        <state relative-caret-position="216">
+          <caret line="27" column="66" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="66" />
           <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <marker date="1544309046979" expanded="true" signature="1328:2119" ph="..." />
+            <element signature="e#0#52#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/buzzard_recognizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
+        <state relative-caret-position="304">
+          <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1544309478596" expanded="true" signature="3354:3779" ph="..." />
-            <marker date="1544309478596" expanded="true" signature="3776:3779" ph="..." />
+            <marker date="1544329355466" expanded="true" signature="3536:3882" ph="..." />
+            <marker date="1544329355466" expanded="true" signature="3905:4357" ph="..." />
+            <marker date="1544329355466" expanded="true" signature="4354:4357" ph="..." />
           </folding>
         </state>
       </provider>

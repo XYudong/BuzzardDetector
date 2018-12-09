@@ -6,6 +6,63 @@ import os
 import pickle
 
 
+class PointQueue:
+    """
+    Each element is a point with coordinates (x, y)
+    """
+    def __init__(self, maxsize=10):
+        self.items = []
+        self.max_size = maxsize
+
+    def isEmpty(self):
+        return self.items == []
+
+    def isFull(self):
+        return self.size() == self.max_size
+
+    def push(self, item):
+        if not self.isFull():
+            item = self._smooth(item)
+            self.items.insert(0, item)
+        else:
+            print("full queue\n")
+
+    def remove(self):
+        if not self.isEmpty():
+            self.items.pop()
+        else:
+            print("empty queue\n")
+
+    def size(self):
+        return len(self.items)
+
+    def mean(self):
+        arr = np.array(self.items)
+        return tuple(int(ele) for ele in np.mean(arr, 0))
+
+    def get(self, idx):
+        if -self.size() <= idx < self.size():
+            return self.items[idx]
+        else:
+            print("index out of scope")
+
+    def _smooth(self, item):
+        if not self.isEmpty():
+            item = list(item)
+            gradient = 15       # maximum changes in each coordinate
+            last_item = self.items[-1]
+            x_diff = item[0] - last_item[0]
+            y_diff = item[1] - last_item[1]
+            item[0] = item[0] if abs(x_diff) < gradient else last_item[0] + abs(x_diff) / x_diff * gradient
+            item[1] = item[1] if abs(y_diff) < gradient else last_item[1] + abs(y_diff) / y_diff * gradient
+
+        return tuple(item)
+
+    def clean(self):
+
+        return
+
+
 def compress_img():
     """compress all images in the path"""
     in_path = 'output/templates/rgb/'

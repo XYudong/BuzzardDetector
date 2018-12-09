@@ -2,8 +2,9 @@ import cv2
 import numpy as np
 import pickle
 import time
+from utilis import PointQueue
 from matplotlib import pyplot as plt
-import matplotlib.patches as patches
+
 
 from descriptors_extraction import img_quantizer
 
@@ -34,7 +35,7 @@ def extract_fea_vec(img_in, fea_type):
     kp, des, img_hist_vec = img_quantizer(img_in, fea_type, voc, k)
     img_hist_vec = img_hist_vec.reshape(1, -1)
 
-    print('shape: ' + str(img_hist_vec.shape) + '\n')
+    print('vector shape: ' + str(img_hist_vec.shape) + '\n')
 
     return kp, des, img_hist_vec
 
@@ -112,20 +113,43 @@ def get_bbox(xs, ys):
     bbox = []
     width = np.max(xs) - np.min(xs)
     height = np.max(ys) - np.min(ys)
+    # set a minimum for the bb
+    width = width if width > 15 else 15
+    height = height if height > 15 else 15
+
     # left_top: the corner with the lowest values in both x, y coordinates
     left_top = (int(x_mean - 0.7*width), int(y_mean - 0.7*height))
     right_bottom = (int(x_mean + 0.7*width), int(y_mean + 0.7*height))
+
     bbox.append(left_top)
     bbox.append(right_bottom)
 
     return bbox
 
 
+def filter_bbox(bbox):
+    """return mean coordinates of a queue of bbox from history"""
+    if not LeftTop_queue.isFull():
+        LeftTop_queue.push(bbox[0])
+        RightBot_queue.push(bbox[1])
+    else:
+        LeftTop_queue.remove()
+        RightBot_queue.remove()
+        LeftTop_queue.push(bbox[0])
+        RightBot_queue.push(bbox[1])
+
+    bbox[0] = LeftTop_queue.mean()
+    bbox[1] = RightBot_queue.mean()
+
+    return bbox
+
+
 def draw_bbox(im, kps):
     xs, ys = filter_kps(kps)
-    print('\nfind ' + str(len(xs)) + ' matches\n')
+    print('find ' + str(len(xs)) + ' matches\n')
 
     bbox = get_bbox(xs, ys)
+    bbox = filter_bbox(bbox)
 
     im = cv2.drawKeypoints(im, kps, im, color=(225, 255, 0))  # matched key points
     for x, y in zip(xs, ys):  # filtered key points
@@ -138,14 +162,20 @@ def draw_bbox(im, kps):
 
 def main(fromVideo=True, fea_type='SIFT'):
     if fromVideo:
-        cap = cv2.VideoCapture(0)
+        path_to_video = "data/video/new/test_3.mp4"
+        cap = cv2.VideoCapture(path_to_video)
+
         while True:
             t1 = time.time()
 
             grabbed, frame = cap.read()
+
             if not grabbed:
                 print('fail to open the video\n')
                 break
+
+            if any(np.array(frame.shape) > 1000):
+                frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             kp, des, vec = extract_fea_vec(frame_gray, fea_type)
@@ -157,6 +187,7 @@ def main(fromVideo=True, fea_type='SIFT'):
                 kps = match_fea(kp, des, fea_type)
                 frame = draw_bbox(frame, kps)
 
+            print("frame shape: " + str(frame.shape))
             cv2.imshow('Frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -189,5 +220,7 @@ def main(fromVideo=True, fea_type='SIFT'):
     return
 
 
+LeftTop_queue = PointQueue(10)      # FIFO queue for top_left point
+RightBot_queue = PointQueue(10)
 main(fromVideo=True, fea_type='SURF')
 
