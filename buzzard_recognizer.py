@@ -151,9 +151,9 @@ def draw_bbox(im, kps):
     bbox = get_bbox(xs, ys)
     bbox = filter_bbox(bbox)
 
-    im = cv2.drawKeypoints(im, kps, im, color=(225, 255, 0))  # matched key points
-    for x, y in zip(xs, ys):  # filtered key points
-        cv2.circle(im, (int(x), int(y)), radius=3, color=(0, 0, 255), thickness=2)
+    # im = cv2.drawKeypoints(im, kps, im, color=(225, 255, 0))  # matched key points
+    # for x, y in zip(xs, ys):  # filtered key points
+    #     cv2.circle(im, (int(x), int(y)), radius=3, color=(0, 0, 255), thickness=2)
 
     cv2.rectangle(im, *bbox, (0, 225, 100), thickness=3)  # draw bounding box
 
@@ -162,14 +162,16 @@ def draw_bbox(im, kps):
 
 def main(fromVideo=True, fea_type='SIFT'):
     if fromVideo:
-        path_to_video = "data/video/new/test_3.mp4"
+        path_to_video = "data/video/new/test_0.mp4"
         cap = cv2.VideoCapture(path_to_video)
+        # Define the codec and create VideoWriter object
+        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        out = cv2.VideoWriter('results/output.avi', fourcc, 20.0, (960, 540))
 
-        while True:
+        while cap.isOpened():
             t1 = time.time()
 
             grabbed, frame = cap.read()
-
             if not grabbed:
                 print('fail to open the video\n')
                 break
@@ -181,12 +183,14 @@ def main(fromVideo=True, fea_type='SIFT'):
             kp, des, vec = extract_fea_vec(frame_gray, fea_type)
             res = recognize_fea_vec(vec, fea_type)
 
-            cv2.putText(frame, "res: " + str(res), (10, 30),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+            say = "Woo, a Buzzard!" if res == 1 else "wait..."
+            cv2.putText(frame, "res: " + str(say), (10, 30),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             if res == 1:
                 kps = match_fea(kp, des, fea_type)
                 frame = draw_bbox(frame, kps)
 
+            out.write(frame)
             print("frame shape: " + str(frame.shape))
             cv2.imshow('Frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -196,8 +200,9 @@ def main(fromVideo=True, fea_type='SIFT'):
             print('This takes: ' + str(t2-t1) + ' seconds\n')
 
     else:
-        # im = cv2.imread('data/train/positive/1/im_video_4_22.jpg', 0)
-        im = cv2.imread('data/train/positive/0/pos_35.jpg', 0)
+        im_name = 'im_video_4_16.jpg'
+        im = cv2.imread('data/test/positive/1/' + im_name, 0)
+        # im = cv2.imread('data/train/positive/0/pos_35.jpg', 0)
         if any(np.array(im.shape) > 1000):
             im = cv2.resize(im, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
 
@@ -205,13 +210,16 @@ def main(fromVideo=True, fea_type='SIFT'):
         res = recognize_fea_vec(vec, fea_type)
         # print('result is ' + str(res))
 
-        cv2.putText(im, "res: " + str(res), (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        say = "Woo, a Buzzard!" if res == 1 else "wait..."
+        cv2.putText(im, "res: " + str(say), (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         if res == 1:
             kps = match_fea(kp, des, fea_type)
             im = draw_bbox(im, kps)
             # im = cv2.drawKeypoints(im, kp, im, color=(0, 255, 0))
 
+        out_path = 'results/imgs/'
+        cv2.imwrite(out_path + fea_type + "_" + im_name, im)
         while True:
             cv2.imshow('Frame', im)
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -220,7 +228,7 @@ def main(fromVideo=True, fea_type='SIFT'):
     return
 
 
-LeftTop_queue = PointQueue(10)      # FIFO queue for top_left point
-RightBot_queue = PointQueue(10)
-main(fromVideo=True, fea_type='SURF')
+LeftTop_queue = PointQueue(5)      # FIFO queue for top_left point
+RightBot_queue = PointQueue(5)
+main(fromVideo=False, fea_type='SURF')
 

@@ -5,8 +5,9 @@ import cv2
 import time
 import os
 
-
-img = cv2.imread('output/templates/imgs/pos_002.jpg', 0)     # test example
+im_path = 'data/train/positive/1/'
+im_name = 'aug_pos_0_1.jpg'
+img = cv2.imread(im_path + im_name, 0)     # test example
 if any(np.array(img.shape) > 1000):
     img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
 img = cv2.GaussianBlur(img, (3, 3), sigmaX=0)
@@ -21,7 +22,7 @@ t2 = time.time()
 print("\nSIFT time: " + str(t2 - t1))
 
 img_sift = cv2.drawKeypoints(img, kp, img, color=(0, 255, 0))
-# img_sift = cv2.drawKeypoints(img, kp, img, flags=cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+cv2.putText(img_sift, "SIFT", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 100, 200), 5)
 print(len(kp))
 print(des.shape)
 
@@ -36,7 +37,7 @@ t2 = time.time()
 print("\nORB time: " + str(t2 - t1))
 
 img_orb = cv2.drawKeypoints(img, kp_orb, img, color=(0, 255, 0))
-
+cv2.putText(img_orb, "ORB", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 100, 200), 5)
 print(len(kp_orb))
 print(des_orb.shape)
 
@@ -53,6 +54,13 @@ print(len(kp_surf))
 print(des_surf.shape)
 
 img_surf = cv2.drawKeypoints(img, kp_surf, img, color=(0, 255, 0))
+cv2.putText(img_surf, "SURF", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 100, 200), 5)
+
+
+out_path = 'results/imgs/'
+cv2.imwrite(out_path+'SIFT_'+im_name, img_sift)
+cv2.imwrite(out_path+'SURF_'+im_name, img_surf)
+cv2.imwrite(out_path+'ORB_'+im_name, img_orb)
 
 f1 = plt.figure(1)
 plt.imshow(img_sift, 'gray')

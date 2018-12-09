@@ -18,3 +18,4 @@ just*.py
 # directory
 data/
 .idea/
+results/

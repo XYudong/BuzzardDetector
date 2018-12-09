@@ -3,6 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="e7588d3f-0e63-4c6c-b718-8a47d3ea0ce5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CV_courseProj.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/yudong.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buzzard_recognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/buzzard_recognizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fea_visualization.py" beforeDir="false" afterPath="$PROJECT_DIR$/fea_visualization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/justExercise.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/justTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilis.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,10 +36,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gitignore" value="1" />
+          <entry key="gitignore" value="2" />
           <entry key="jpg" value="6" />
           <entry key="md" value="2" />
-          <entry key="py" value="62" />
+          <entry key="py" value="64" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
@@ -36,8 +47,8 @@
         <counts>
           <entry key="Image" value="6" />
           <entry key="Markdown" value="2" />
-          <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="62" />
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="Python" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -45,7 +56,7 @@
           <entry key="dummy" value="21" />
           <entry key="gitignore" value="23" />
           <entry key="md" value="299" />
-          <entry key="py" value="18096" />
+          <entry key="py" value="18433" />
           <entry key="txt" value="342" />
         </counts>
       </usages-collector>
@@ -53,7 +64,7 @@
         <counts>
           <entry key="Markdown" value="299" />
           <entry key="PLAIN_TEXT" value="386" />
-          <entry key="Python" value="18096" />
+          <entry key="Python" value="18433" />
         </counts>
       </usages-collector>
     </session>
@@ -75,13 +86,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="209">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
-                <marker date="1544328841160" expanded="true" signature="221:1648" ph="..." />
-                <marker date="1544328841160" expanded="true" signature="392:442" ph="..." />
-                <marker date="1544328841160" expanded="true" signature="2840:3631" ph="..." />
+                <marker date="1544331419180" expanded="true" signature="221:1648" ph="..." />
+                <marker date="1544331419180" expanded="true" signature="392:442" ph="..." />
+                <marker date="1544331419180" expanded="true" signature="2840:3631" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,26 +111,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/buzzard_recognizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
+            <state relative-caret-position="209">
+              <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1544329355466" expanded="true" signature="3536:3882" ph="..." />
-                <marker date="1544329355466" expanded="true" signature="3905:4357" ph="..." />
-                <marker date="1544329355466" expanded="true" signature="4354:4357" ph="..." />
+                <marker date="1544333727697" expanded="true" signature="3536:3882" ph="..." />
+                <marker date="1544333727697" expanded="true" signature="3905:4363" ph="..." />
+                <marker date="1544333727697" expanded="true" signature="4360:4363" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -139,23 +141,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fea_visualization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+            <state relative-caret-position="228">
+              <caret line="59" selection-start-line="59" selection-end-line="60" selection-end-column="47" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1544308505982" expanded="true" signature="119:121" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/justTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1544333202111" expanded="true" signature="119:183" ph="..." />
               </folding>
             </state>
           </provider>
@@ -206,11 +196,11 @@
         <option value="$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-1262018858/cv2/cv2/FlannBasedMatcher.py" />
         <option value="$PROJECT_DIR$/testing.py" />
         <option value="$PROJECT_DIR$/descriptors_extraction.py" />
-        <option value="$PROJECT_DIR$/fea_visualization.py" />
         <option value="$PROJECT_DIR$/justTest.py" />
-        <option value="$PROJECT_DIR$/utilis.py" />
-        <option value="$PROJECT_DIR$/buzzard_recognizer.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/utilis.py" />
+        <option value="$PROJECT_DIR$/fea_visualization.py" />
+        <option value="$PROJECT_DIR$/buzzard_recognizer.py" />
       </list>
     </option>
   </component>
@@ -232,6 +222,11 @@
             <path>
               <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
               <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CV_courseProj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CV_courseProj" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -378,9 +373,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.buzzard_recognizer" />
+        <item itemvalue="Python.fea_visualization" />
         <item itemvalue="Python.justTest" />
         <item itemvalue="Python.utilis" />
-        <item itemvalue="Python.fea_visualization" />
         <item itemvalue="Python.testing" />
       </list>
     </recent_temporary>
@@ -445,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544329560221</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="apply mean filter upon bounding box locations, quite useful">
+      <created>1544329666845</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1544329666845</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -458,15 +460,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <frame x="-3776" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14792576" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14792576" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49945414" weight="0.42991632" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -696,13 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-1262018858/cv2/cv2/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="7353" column="4" selection-start-line="7353" selection-start-column="4" selection-end-line="7353" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vocabulary.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -744,29 +739,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/justExercise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/templates/imgs/pos_002.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/output/templates/imgs/pos_003.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fea_visualization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1544308505982" expanded="true" signature="119:121" ph="..." />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/video_input.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -792,15 +769,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/feature_extraction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="27" column="66" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/justExercise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-1262018858/cv2/cv2/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="8875" column="44" selection-start-line="8875" selection-start-column="44" selection-end-line="8875" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utilis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="209">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
-            <marker date="1544328841160" expanded="true" signature="221:1648" ph="..." />
-            <marker date="1544328841160" expanded="true" signature="392:442" ph="..." />
-            <marker date="1544328841160" expanded="true" signature="2840:3631" ph="..." />
+            <marker date="1544331419180" expanded="true" signature="221:1648" ph="..." />
+            <marker date="1544331419180" expanded="true" signature="392:442" ph="..." />
+            <marker date="1544331419180" expanded="true" signature="2840:3631" ph="..." />
           </folding>
         </state>
       </provider>
@@ -816,33 +824,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_extraction.py">
+    <entry file="file://$PROJECT_DIR$/fea_visualization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="66" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="66" />
+        <state relative-caret-position="228">
+          <caret line="59" selection-start-line="59" selection-end-line="60" selection-end-column="47" />
           <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1544333202111" expanded="true" signature="119:183" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/buzzard_recognizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
+        <state relative-caret-position="209">
+          <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1544329355466" expanded="true" signature="3536:3882" ph="..." />
-            <marker date="1544329355466" expanded="true" signature="3905:4357" ph="..." />
-            <marker date="1544329355466" expanded="true" signature="4354:4357" ph="..." />
+            <marker date="1544333727697" expanded="true" signature="3536:3882" ph="..." />
+            <marker date="1544333727697" expanded="true" signature="3905:4363" ph="..." />
+            <marker date="1544333727697" expanded="true" signature="4360:4363" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
         </state>
       </provider>
     </entry>
