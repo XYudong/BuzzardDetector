@@ -13,7 +13,8 @@
 *.pickle
 
 # py files
-just*.py
+justExercise.py
+justTest.py
 
 # directory
 data/

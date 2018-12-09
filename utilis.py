@@ -49,7 +49,7 @@ class PointQueue:
     def _smooth(self, item):
         if not self.isEmpty():
             item = list(item)
-            gradient = 20       # maximum changes in each coordinate
+            gradient = 30       # maximum changes on each coordinate
             last_item = self.items[-1]
             x_diff = item[0] - last_item[0]
             y_diff = item[1] - last_item[1]
@@ -59,7 +59,7 @@ class PointQueue:
         return tuple(item)
 
     def clean(self):
-
+        self.items = []
         return
 
 

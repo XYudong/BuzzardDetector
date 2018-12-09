@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 import time
 from utilis import PointQueue
+from imutils.video import FPS
 from matplotlib import pyplot as plt
 
 
@@ -35,7 +36,7 @@ def extract_fea_vec(img_in, fea_type):
     kp, des, img_hist_vec = img_quantizer(img_in, fea_type, voc, k)
     img_hist_vec = img_hist_vec.reshape(1, -1)
 
-    print('vector shape: ' + str(img_hist_vec.shape) + '\n')
+    # print('vector shape: ' + str(img_hist_vec.shape) + '\n')
 
     return kp, des, img_hist_vec
 
@@ -107,8 +108,8 @@ def filter_kps(in_kps):
 
 
 def get_bbox(xs, ys):
-    x_mean = np.median(xs)
-    y_mean = np.median(ys)
+    x_med = np.median(xs)
+    y_med = np.median(ys)
 
     bbox = []
     width = np.max(xs) - np.min(xs)
@@ -118,8 +119,8 @@ def get_bbox(xs, ys):
     height = height if height > 15 else 15
 
     # left_top: the corner with the lowest values in both x, y coordinates
-    left_top = (int(x_mean - 0.7*width), int(y_mean - 0.7*height))
-    right_bottom = (int(x_mean + 0.7*width), int(y_mean + 0.7*height))
+    left_top = (int(x_med - 0.7*width), int(y_med - 0.7*height))
+    right_bottom = (int(x_med + 0.7*width), int(y_med + 0.7*height))
 
     bbox.append(left_top)
     bbox.append(right_bottom)
@@ -145,16 +146,19 @@ def filter_bbox(bbox):
 
 
 def draw_bbox(im, kps):
+    # kps: key points after kNN matching
     xs, ys = filter_kps(kps)
     print('find ' + str(len(xs)) + ' matches\n')
 
     bbox = get_bbox(xs, ys)
     bbox = filter_bbox(bbox)
 
-    # im = cv2.drawKeypoints(im, kps, im, color=(225, 255, 0))  # matched key points
-    # for x, y in zip(xs, ys):  # filtered key points
-    #     cv2.circle(im, (int(x), int(y)), radius=3, color=(0, 0, 255), thickness=2)
-
+    # draw matched key points
+    im = cv2.drawKeypoints(im, kps, im, color=(100, 200, 0))
+    # draw filtered key points
+    for x, y in zip(xs, ys):
+        cv2.circle(im, (int(x), int(y)), radius=3, color=(0, 0, 255), thickness=2)
+    # draw bounding box
     cv2.rectangle(im, *bbox, (0, 225, 100), thickness=3)  # draw bounding box
 
     return im
@@ -162,14 +166,16 @@ def draw_bbox(im, kps):
 
 def main(fromVideo=True, fea_type='SIFT'):
     if fromVideo:
-        path_to_video = "data/video/new/test_0.mp4"
+        path_to_video = "data/video/new/test_5.mp4"
         cap = cv2.VideoCapture(path_to_video)
         # Define the codec and create VideoWriter object
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
-        out = cv2.VideoWriter('results/output.avi', fourcc, 20.0, (960, 540))
+        out = cv2.VideoWriter('results/output_5.avi', fourcc, 20.0, (960, 540))
 
+        global neg_times        # number of continuous negative recognition result
+        fps = FPS().start()
         while cap.isOpened():
-            t1 = time.time()
+            # t1 = time.time()
 
             grabbed, frame = cap.read()
             if not grabbed:
@@ -189,34 +195,47 @@ def main(fromVideo=True, fea_type='SIFT'):
             if res == 1:
                 kps = match_fea(kp, des, fea_type)
                 frame = draw_bbox(frame, kps)
+                neg_times = 0
+            else:
+                neg_times += 1
+                if neg_times > 3:
+                    LeftTop_queue.clean()
+                    RightBot_queue.clean()
 
             out.write(frame)
-            print("frame shape: " + str(frame.shape))
+
+            # print("frame shape: " + str(frame.shape))
             cv2.imshow('Frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
-            t2 = time.time()
-            print('This takes: ' + str(t2-t1) + ' seconds\n')
+            fps.update()
+            # t2 = time.time()
+            # print('This takes: ' + str(t2-t1) + ' seconds\n')
+
+        fps.stop()
+        print("approximate FPS: " + str(fps.fps()))
 
     else:
-        im_name = 'im_video_4_16.jpg'
-        im = cv2.imread('data/test/positive/1/' + im_name, 0)
-        # im = cv2.imread('data/train/positive/0/pos_35.jpg', 0)
+        im_name = 'im_video_4_1.jpg'
+        im = cv2.imread('data/test/positive/1/' + im_name, 1)
+        # im = cv2.imread('data/train/positive/0/pos_35.jpg', 1)
+
         if any(np.array(im.shape) > 1000):
             im = cv2.resize(im, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_CUBIC)
+        im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 
-        kp, des, vec = extract_fea_vec(im, fea_type)
+        kp, des, vec = extract_fea_vec(im_gray, fea_type)
         res = recognize_fea_vec(vec, fea_type)
         # print('result is ' + str(res))
 
         say = "Woo, a Buzzard!" if res == 1 else "wait..."
         cv2.putText(im, "res: " + str(say), (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 155, 200), 2)
         if res == 1:
             kps = match_fea(kp, des, fea_type)
             im = draw_bbox(im, kps)
-            # im = cv2.drawKeypoints(im, kp, im, color=(0, 255, 0))
+            # im = cv2.drawKeypoints(im, kp, im, color=(0, 200, 0))
 
         out_path = 'results/imgs/'
         cv2.imwrite(out_path + fea_type + "_" + im_name, im)
@@ -228,7 +247,8 @@ def main(fromVideo=True, fea_type='SIFT'):
     return
 
 
-LeftTop_queue = PointQueue(5)      # FIFO queue for top_left point
-RightBot_queue = PointQueue(5)
-main(fromVideo=False, fea_type='SURF')
+LeftTop_queue = PointQueue(4)      # FIFO queue for top_left point
+RightBot_queue = PointQueue(4)
+neg_times = 0
+main(fromVideo=True, fea_type='SURF')
 
