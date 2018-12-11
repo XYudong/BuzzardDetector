@@ -6,11 +6,7 @@
 *.pcd
 *.bag
 *.sav
-*.txt
-*.jpg
 *.mp4
-
-
 *.pickle
 
 # py files
@@ -22,3 +18,7 @@ justTest.py
 data/
 .idea/
 results/
+output/
+voc_output/
+pre-trained_models/
+

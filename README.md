@@ -20,11 +20,11 @@
 ## Results
 
 - Extracted keypoints
-![Alt text](results/imgs/localization/SURF_im_video_4_1_kps.jpg?raw=true "key points")
+![Alt text](doc/SURF_im_video_4_1_kps.jpg?raw=true "key points")
 
 
 - Localization
-![Alt text](results/imgs/localization/SURF_im_video_4_1_bb.jpg?raw=true "bbox")
+![Alt text](doc/SURF_im_video_4_1_bb.jpg?raw=true "bbox")
 
 
 - [Video demo](https://youtu.be/50UbhD-VNU0)
