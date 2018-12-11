@@ -10,9 +10,11 @@
 *.jpg
 *.mp4
 
+
 *.pickle
 
 # py files
+*.pyc
 justExercise.py
 justTest.py
 
